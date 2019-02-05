@@ -1,0 +1,15 @@
+body {
+	font-family: arial, helvetica, sans-serif;
+	background-color: #E6E6FA;
+	text-align: center;
+	width: 80%;
+  	margin: auto;
+}
+p {
+	text-align: left;
+}
+
+h3 {
+	text-align: left;
+}
+

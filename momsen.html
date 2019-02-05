@@ -4,7 +4,7 @@
 <title>momsen</title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="jens" >
-<meta name="date" content="2019-02-05T20:24:52+0100" >
+<meta name="date" content="2019-02-06T00:03:37+0100" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -20,11 +20,21 @@
 </head>
 <body> 
 
-	
+<h3 align="center">Bokföra verifikationer för konsumenttjänster ex SNI-kod S96</h3>
 
+<br>
+
+<div>
+<p>Att bokföra en dagskassa för ex skönhetssalong eller liknande verksamhet kan vara tidskrävande eftersom man måste räkna ut intäkter, moms och försäljning med räkneapparat många gånger. Då kan denna sida förenkla arbetet. Sida bygger på Momssatsen 25%.</p>
+
+<p>Du använder sidan enkelt genom att använda TAB-tangenten för att stega mellan inmatningsfälten där du matar in Totala dagskassa=Intäkter, sen Totala bankinbetalningar exempel med Swish och sist den försäljning av produkter som gjorts.</p>
+
+<p>När du trycker på TAB-tangenten för sista fältet Försäljning kommer de visas hur bokföringen av verifikation ska göras om man använder Bas-kontoplanen. Vill du göra en inmatning fortsätt då att tryck på TAB-tangeneten tills du når adressfältet tryck då på ENTER-tangenten, sidan laddas då om. Tryck på TAB igen och du står på första inmatningsfältet redo för en ny verifikation.</p>
+</div>
+	
 <br><br>
 
-<div align="center" class="inmatning" id="inmatning">
+<div class="inmatning" id="inmatning">
 Intäkter: <input type="number" name="income" size="5" tabindex="1" class="income" id="income">
 
 <br><br>
@@ -33,14 +43,16 @@ Bankinsättning: <input type="number" name="deposit" size="5" tabindex="2" class
 
 <br><br>
 Försäljning: <input type="number" name="sails" size="5" tabindex="3" class="sails" id="sails" onchange="calculateVer()">
-
 </div>
-<br><br>
-<div align="center" class="utmatning" id="utmatning">
 
-</div>
 <br><br>
 
+<div class="utmatning" id="utmatning">
+
+</div>
+
+<br><br>
 
 </body>
+
 </html>
