@@ -4,8 +4,8 @@
 <title>momsen</title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="jens" >
-<meta name="date" content="2019-02-06T00:11:19+0100" >
-<meta name="copyright" content="">
+<meta name="date" content="2019-02-06T00:22:11+0100" >
+<meta name="copyright" content="Jens Lundeqvist">
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
@@ -30,6 +30,9 @@
 <p>Du använder sidan enkelt genom att använda TAB-tangenten för att stega mellan inmatningsfälten där du matar in Totala dagskassa=Intäkter, sen Totala bankinbetalningar exempel med Swish och sist den försäljning av produkter som gjorts.</p>
 
 <p>När du trycker på TAB-tangenten för sista fältet Försäljning kommer de visas hur bokföringen av verifikation ska göras om man använder Bas-kontoplanen. Vill du göra en inmatning till fortsätt då att tryck på TAB-tangeneten tills du når adressfältet tryck då på ENTER-tangenten, sidan laddas då om. Tryck på TAB igen och du står på första inmatningsfältet redo för en ny verifikation.</p>
+
+<p>Källkoden till detta Javascript finns på: <a href="https://github.com/jelu000/bokforing" target="_self" title="Till Git-Hub">https://github.com/jelu000/bokforing</a> </p>
+
 </div>
 	
 <br><br>
