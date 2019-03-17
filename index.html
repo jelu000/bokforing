@@ -4,7 +4,7 @@
 <title></title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="jens" >
-<meta name="date" content="2018-06-07T22:44:51+0200" >
+<meta name="date" content="2019-03-17T23:49:35+0100" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -14,13 +14,75 @@
 <meta http-equiv="content-style-type" content="text/css">
 <meta http-equiv="expires" content="0">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
 <script src="bokforing.js"></script>
 
-
 </head>
+
 <body>
-<p id="p1">This is a paragraph.</p>
+
+<div id="tabs">
+  <ul>
+    
+    <li><a href="#tabs-1">Skattetabell</a></li>
+    <li><a href="#tabs-2">Varuinköp</a></li>
+    <li><a href="#tabs-3">Löneutbetalning</a></li>
+    <li><a href="#tabs-4">Försäljning</a></li>
+  </ul>
+  	<div id="tabs-1">
+    
+  	
+  	</div>
+  	<div id="tabs-2">
+    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+  	</div>
+   <div id="tabs-3">
+    	
+		<p>Denna bokföringsorder baseras på det vanligaste sättet att bokföra en lön manuellt på och arbetsgivaravgiften är på 31,42% 2019 baseras Skatteverkets regler. Givetvis kan andra avgifter tillkoma beroende på arbetsgivare och fackliga avtal. Arbetsgivaravgiften som är för de anställdas pensioner och försäkringar kam alltså variera. </p>    	
+    	
+    	<p>Skattetabellen i denna beräkning avser löner, arvoden och liknande ersättningar till den som vid årets ingång inte fyllt 65 år om inkomsten ger rätt till jobbskatteavdrag.
+      	Tabellen ska tillämpas oavsett om allmän pensionsavgift ska betalas eller inte.</p>
+		
+		<p>Skattetabell är den skattesats som avgörs av vart man bor och vilken kommun man betalar skatt i. 
+		Detta kotrolerar man på skatteverkets sida 
+		<a href="https://skatteverket.entryscape.net/catalog/9/datasets/10" target="_self" name="Skatteverket" style="color: blue; "  title="Skatteverket">https://skatteverket.entryscape.net/catalog/9/datasets/10</a> eller 
+		här finns mer info 
+		<a href="https://www.momsens.se/hur-laser-man-skatteverkets-skattetabeller" target="_self" name="Momsen.se" style="color: blue; " title="Momsen.se">https://www.momsens.se/hur-laser-man-skatteverkets-skattetabeller</a></p>    	
+		
+		<br><br>		
+		
+		<div class="loninmatning" id="loninmatning">
+		Bruttolön: <input type="number" name="income" size="5" tabindex="1" class="lon" id="lon">
+		<br><br>
+		Arbetsgivaravgift i %: <input type="text" name="socialaavg" value="31.42" size="5" maxlength="5" tabindex="2" class="socavg" id="socavg">
+		<br><br>
+		Skattetabell: <input type="text" name="skattetab" value="31" size="5" maxlength="2" tabindex="3" class="skattetab" id="skattetab"> 
+		</div>
+
+		<br><br>
+
+		<div class="utmatning" id="utmatning">
+
+		</div>
+				
+		  
+  
+   </div>
+	<div id="tabs-4">
+    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+  </div>  
+  
+</div>
+
 
 </body>
 </html>

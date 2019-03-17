@@ -1,3 +1,11 @@
+$(document).ready(function(){
+
+   // jQuery methods go here...
+   
+
+}); 
+
+
 $("p").click(function(){
   // action goes here!!
 }); 
