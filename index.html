@@ -4,7 +4,7 @@
 <title></title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="jens" >
-<meta name="date" content="2019-03-17T23:49:35+0100" >
+<meta name="date" content="2019-03-25T23:37:34+0100" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -21,26 +21,33 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 
 <script src="bokforing.js"></script>
+<script src="skatt.js"></script>
+<!--<script src="PapaParse-4.6.0/papaparse.js"></script>-->
+
 
 </head>
 
-<body>
+<body onload="getDatan()">
 
 <div id="tabs">
   <ul>
     
-    <li><a href="#tabs-1">Skattetabell</a></li>
-    <li><a href="#tabs-2">Varuinköp</a></li>
+    <li><a href="#tabs-1">Skattesatser per kommun</a></li>
+    <li><a href="#tabs-2">Skattetabell månadslön</a></li>
     <li><a href="#tabs-3">Löneutbetalning</a></li>
     <li><a href="#tabs-4">Försäljning</a></li>
   </ul>
   	<div id="tabs-1">
-    
-  	
+    	<!-- Parse from URL. -->
+		<!--<papa-parse auto url="skattetabellermanad2019.csv" rows="{{rows}}"></papa-parse>-->
+<form accept-charset="iso-8859-1">  		
+  		<!--<button name="getcvs" value="getcvss" type="button" onclick="getDatan()" id="myButton">Read cvs</button>-->
+		<!--<meta charset="iso-8859-1">-->		
+		<select name="optionkomuner" id="optionkomuner"></select>  		
+  </form>		
   	</div>
   	<div id="tabs-2">
     <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>

@@ -2,20 +2,61 @@ $( function() {
     $( "#tabs" ).tabs();
   } );
 
+var myButton = document.getElementById('myButton');
+//myButton.onclick = tTest();
 
+  function tTest(){
+    console.log("test");
+  }
+//myButton.addEventListener("click", tTest());
+
+
+
+//http://salongnobless.se/bokforing/KommunalaSkattesatser.csv
+  var GlobalSkattetabell;
+
+/**  -OBS: kund bara hämta max limit 100 poster!
+//Read the taxTable from skatteverket.se onLoading site
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var myObj = JSON.parse(this.responseText);
-      document.getElementById("tabs-1").innerHTML = myObj.name;
+      GlobalSkattetabell = JSON.parse(this.responseText);
+      document.getElementById("tabs-1").innerHTML = GlobalSkattetabell.results;
+      console.log("Start");
+      for (var i=0; i<GlobalSkattetabell.results.length; i++){
+            console.log("inne: " + i);
+            console.log(GlobalSkattetabell.results[i].kommun);
+
+      }
+
     }
   };
-  xmlhttp.open("GET", "https://skatteverket.entryscape.net/rowstore/dataset/c67b320b-ffee-4876-b073-dd9236cd2a99", true);
+  //https://skatteverket.entryscape.net/rowstore/dataset/c67b320b-ffee-4876-b073-dd9236cd2a99/json?_offset=100&_limit=100
+  //https://skatteverket.entryscape.net/rowstore/dataset/c67b320b-ffee-4876-b073-dd9236cd2a99
+  xmlhttp.open("GET", "https://skatteverket.entryscape.net/rowstore/dataset/c67b320b-ffee-4876-b073-dd9236cd2a99/json?_offset=100&_limit=1000", true);
   xmlhttp.send();
+*/
 
+      //start = now();
+			//var results = Papa.parse("http://salongnobless.se/bokforing/KommunalaSkattesatser.csv", config);
+			//console.log("Synchronous results:", results);
 
+      var data;
+    function getDatan(){
 
+        $.ajax({
+      	  type: "GET",
+      	  url: "js-tutorials.com_sample_file.csv",
+      	  dataType: "text",
+      	  success: function(response)
+      	  {
+      		data = $.csv.toArrays(response);
+          console.log(data);
+          //generateHtmlTable(data);
+      	  }
+      	});
 
+      }
 
   function writeVerTable(twoD_Array){
 
