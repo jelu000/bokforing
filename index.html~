@@ -4,7 +4,7 @@
 <title></title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="jens" >
-<meta name="date" content="2019-03-25T23:36:57+0100" >
+<meta name="date" content="2019-03-28T00:12:18+0100" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -17,6 +17,7 @@
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="skatten.css">
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -35,7 +36,7 @@
 <div id="tabs">
   <ul>
     
-    <li><a href="#tabs-1">Skattesattser per kommun</a></li>
+    <li><a href="#tabs-1">Skattesatser per kommun</a></li>
     <li><a href="#tabs-2">Skattetabell månadslön</a></li>
     <li><a href="#tabs-3">Löneutbetalning</a></li>
     <li><a href="#tabs-4">Försäljning</a></li>
@@ -43,11 +44,16 @@
   	<div id="tabs-1">
     	<!-- Parse from URL. -->
 		<!--<papa-parse auto url="skattetabellermanad2019.csv" rows="{{rows}}"></papa-parse>-->
-<form accept-charset="iso-8859-1">  		
+		<form accept-charset="iso-8859-1">  		
   		<!--<button name="getcvs" value="getcvss" type="button" onclick="getDatan()" id="myButton">Read cvs</button>-->
 		<!--<meta charset="iso-8859-1">-->		
-		<select name="optionkomuner" id="optionkomuner"></select>  		
-  </form>		
+		<select name="optionkommuner" id="optionkommuner" onchange="selectedKommun()"></select>  		
+  		</form>
+  		<br>
+		<div class="KomSkattutmatning" id="KomSkattutmatning">
+
+		</div>  
+  		
   	</div>
   	<div id="tabs-2">
     <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
