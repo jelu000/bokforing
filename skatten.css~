@@ -1,3 +1,7 @@
+body {
+background-color: #D8F6CE;
+}
+
 table, td, th {
 	border-collapse: collapse;
 	border: 1px solid black;
@@ -9,9 +13,18 @@ th, td {
 }
 
 tr:nth-child(even) {
-	background-color: #f2f2f2;
+	background-color: #CEF6CE;
 }
 
 thead {
-	background-color: #f2f2f2;
+	background-color: #BCF5A9;
+}
+
+a {
+color: blue;
+}
+
+.ui-tabs-nav {
+background-color: #58FAAC;
+
 }
