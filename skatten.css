@@ -21,10 +21,15 @@ thead {
 }
 
 a {
-color: blue;
+	color: blue;
 }
 
 .ui-tabs-nav {
-background-color: #A9F5D0;
+	background-color: #A9F5D0;
 
+}
+
+div#loninmatning {
+	border-top: 3px solid green;
+  
 }

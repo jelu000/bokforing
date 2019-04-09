@@ -4,7 +4,7 @@
 <title></title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="jens" >
-<meta name="date" content="2019-04-07T22:15:23+0200" >
+<meta name="date" content="2019-04-10T00:11:11+0200" >
 <meta name="copyright" content="Jens Lundeqvist">
 <meta name="keywords" content="Skatteverket">
 <meta name="description" content="bokföra lön, skatt, lön, skattetabell, löneskatt, kommunalskatt, bokföring, verifikation">
@@ -41,7 +41,6 @@
     <li><a href="#tabs-5">Länkar</a></li>
   </ul>
   	<div id="tabs-1">
-		<h3>Så fungerar skatt på lön </h3>   	
     	<p>
     	Här kan du söka i Skatteverkets skattetabell för kommunalskatt i filen skattesatser-2019_2.csv för att till exempel räkna ut preliminär inkomstskatt. 
     	Skattesatsen används också för att räkna ut skatt på lön eftersom skattesatsen ligger till grund för vilken tabell som ska användas i löne skattetabellen. 
@@ -70,9 +69,9 @@
     	</p>
     
     	<p>
-    	Man väljer först vilket tabellnummer man tillhör vilket man får från skattesatser för kommun som finns på flik 1.
-    	Där söker man sin kommun och avrundar skatteprocenten till ett heltal som blir tabellnumret man använder på denna sida. 
-    	Sen ser man i vilket intervall lönen ligger i och på samma rad ser man den preliminära skatt som ska betalas på en månadslön. Här kan du läsa mer om hur skatt månadslön fungerar:  
+    	Man väljer först vilket tabell nr man tillhör vilket man får från skattesatser för kommun som finns på flik 1.
+    	Där söker man sin kommun och avrundar skatteprocenten till ett heltal som blir tabell numret man använder på denna sida. 
+    	Sen ser man i vilket intervall lönen ligger i och på samma rad ser man den skatt som ska betalas på en månadslön. Här kan du läsa mer om hur skatt månadslön fungerar:  
 	 	<a href="https://www.skatteverket.se/privat/skatter/arbeteochinkomst/sabeskattasdinlon.4.54a3d27615036ac09f316ce.html" target="_blank" style="color: #0000FF; ">https://www.skatteverket.se/privat/skatter/arbeteochinkomst/sabeskattasdinlon.4.54a3d27615036ac09f316ce.html</a>	    
     	</p>
 		
@@ -93,33 +92,47 @@
    
    <div id="tabs-3">
     	
-    	<h4>Denna sida är inte klar!</h4>	
+    	<h4>Bokföra löneutbetalning</h4>	
 		<p>		
 		Denna sida visar hur man bokför en lön med arbetsgivaravgift. 
 		Arbetsgivaravgiften kan variera beroende på vilket anställningsavtal och vilket fack den anställde är ansluten till. 
 		Arbetsgivaravgiften är i grund 31.42% 2019 och läggs på bruttolön. Från själva bruttolönen dras löneskatten. 
 		Denna skatt baseras på flera faktorer såsom till exempel vart man bor, ålder, månadslön och om man är ansluten till kyrkan. 
+		</p>
+		<p>
+		I korthet går de till så här när man räknar ut lön, man börjar med 1 räkna ut arbetsgivaravgifter genom att ta bruttolön * 0.3142 som är arbetsgivaravgiften 2019. 
+		Nummer 2 är att dra av den rätta preliminära skatten från bruttolönen som man hittar i skattetabellen för löner. 
+		Vilken skattetabell du ska använda får du reda på under första fliken: "Skattesatser per kommun".
 		</p>    	
     	
-		<br>		
+			
 		<div class="loninmatning" id="loninmatning">
-			Bruttolön: <input type="number" name="income" size="5" tabindex="1" class="lon" id="lon">
-			<br><br>
-			Arbetsgivaravgift i %: <input type="text" name="socialaavg" value="31.42" size="5" maxlength="5" tabindex="2" class="socavg" id="socavg">
-			<br><br>
-			Skattetabell: <input type="text" name="skattetab" value="31" size="5" maxlength="2" tabindex="3" class="skattetab" id="skattetab"> 
+			<br>
+			Bruttolön: <input  tabindex="1" type="number" name="income" size="5"  class="income" id="income" >
+			&nbsp;
+			Arbetsgivaravgift i %: <input tabindex="2" type="number" name="socialaavg" value="31.42" size="1" maxlength="5"  class="socialaavg" id="socialaavg">
+			&nbsp;
+			Skattetabell: <select tabindex="3" name="optionaccounting" id="optionaccounting" onchange="selectSalaryTaxNr(false)"></select>
+			&nbsp;
+			Fyllt 65 år: <input tabindex="4" type="checkbox" class="sixtieFive" id="sixtieFive">
+			&nbsp; &nbsp;&nbsp;&nbsp;
+			<input tabindex="5" type="submit" name="Bokför" value="Bokför" onclick="salAccounting()">
+		
+		
 		</div>
 
 		<br><br>
 
-		<div class="utmatning" id="utmatning">
+		<div class="skattutrakning" id="skattutrakning"></div>
+
+		<div class="bokfor_utmatning" id="bokforutmatning">
 
 		</div>
 	</div>
 	
 	<div id="tabs-4">
     	<p>Syftet med denna sida är att försöka förklara lönebeskattning på ett lättare sätt än Skatteverkets sida som jag tycker kan kännas stor och svår att förstå ibland. 
-    	Sen vill jag också visa hur man kan bokföra en lön enligt Bokföringsnämndens regler med arbetsgivar avgift och löneskatt.
+    	Sen också visa hur man kan bokföra en lön enligt Bokföringsnämndens regler med arbetsgivar avgift och löneskatt.
  		</p>
   </div> 
   

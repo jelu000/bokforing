@@ -7,6 +7,9 @@ var komSkattArray = new Array(); //2D array med all data kummunalskatt
 var kommun_array = new Array();//array med bara kommuner kommunalskatt
 var global_kommun ="";
 
+//var G_valdSallaryTaxRow = new Array();
+
+
 //Lönesaktt - Sallary Taxes
 var salaryTaxArray = new Array();
 var salaryTaxArrayTabellNr = [];
@@ -214,14 +217,18 @@ function makeSalaryTaxArray(tdata){
 
     var t_tablenr="";
 
-    tselect = document.getElementById("optionsalarytax");
-    //<option selected="true" disabled="disabled">Choose Tagging</option>
-    option = document.createElement("option");
+    //Fill select option sid 3 Bokföring ++++++++++++++++++++++++++++++++
+    var tselectaccounting = document.getElementById("optionaccounting"); //fyller select på sidan 3 bokföra
+
+    //Fill select option sid 2 Löneskattetabell ++++++++++++++++++++++++++++++++
+    var tselect = document.getElementById("optionsalarytax");
+    var option = document.createElement("option");
     option.value = "Välj skattetabell";
     option.innerHTML = "Välj skattetabell";
     option.selected = "true";
     option.disabled = "disabled";
     tselect.appendChild(option);
+    //tselectaccounting.appendChild(option);//-----------------------------------
     //console.log(tdata);
 
     for (var i=1; i<tdata.length; i++){//tdata.length 1346
@@ -236,16 +243,21 @@ function makeSalaryTaxArray(tdata){
         //splitar Stringen till array[År;Församlings-kod;Kommun;Församling;Summa, inkl. kyrkoavgift;Summa, exkl. kyrkoavgift;Kommunal-skatt;Landstings-skatt;Begravnings-av]
         var telement = trow.split(",");
         //console.log(telement[2]);
-        //skapar en array med bara Kommun
+        //skapar en array med bara tabell nummer
         if (t_tablenr != telement[2] && telement[2] != "3") {
-          salaryTaxArrayTabellNr.push(telement[2]);//lägger till kommun
+          salaryTaxArrayTabellNr.push(telement[2]);//lägger till tabell nummer
           //console.log(telement[2]);
+          //Fill select option sid 2 Löneskattetabell ++++++++++++++++++++++++++++++++
           option = document.createElement("option");
-
           option.value = telement[2];
           option.innerHTML = telement[2];
           tselect.appendChild(option);
-
+          //++++++++++++++++++++++++++++++++++++
+          //Fill select option sid 3 Bokföring ++++++++++++++++++++++++++++++++
+          var option2 = document.createElement("option");
+          option2.value = telement[2];
+          option2.innerHTML = telement[2];
+          tselectaccounting.appendChild(option2);// //fyller select på sidan 3 bokföra--------------------------------
 
         }
         salaryTaxArray.push(telement);//lägger till rad med [kommunalskatt data]
@@ -280,7 +292,7 @@ function selectSalaryTaxNr(t_findrow){
 
 
   t_valdsalarynr_array.push(t_heading);
-
+//------------------------
   var t_tabnr_value =tselectedSalNr.options[tselectedSalNr.selectedIndex].value;
 
   for (var i=0; i < salaryTaxArray.length; i++){
@@ -321,6 +333,7 @@ function selectSalaryTaxNr(t_findrow){
           t_newrowarray[4] = t_rowBefore[5];//under 65
           t_newrowarray[5] = t_rowBefore[7];// från och med 65
           t_valdsalarynr_array.push(t_newrowarray);
+          //G_valdSallaryTaxRow = t_newrowarray;//---------------------------------------------------
           break;
       }
     }
@@ -354,3 +367,154 @@ function showSallaryButton(t_status){
 //-----------------------------------------------------------------------------
 //BokföraLön
 //--------------
+function salAccounting(){
+  var t_salary = Number(document.getElementById("income").value);
+  var t_socavg = Number(document.getElementById("socialaavg").value);
+  var t_tabellNr = document.getElementById("optionaccounting");
+
+  var t_tabelNr_value = t_tabellNr.options[t_tabellNr.selectedIndex].value;
+  var t_boolSixtieFive = document.getElementById("sixtieFive").checked;
+
+  var t_skatterad = new Array();
+  t_skatterad = getTaxRow(t_salary, t_tabelNr_value);
+
+  var t_skattunder65 = parseInt(t_skatterad[5]);
+  var t_skatt65 = parseInt(t_skatterad[7]);
+
+  if (! t_boolSixtieFive){
+    printKalkyl(t_salary, t_socavg, t_skattunder65);
+  }
+  else{
+    printKalkyl(t_salary, t_socavg, t_skatt65);
+  }
+
+
+  //console.log(t_salary +" "+ t_socavg +" "+ t_tabelNr_value +" "+ t_boolSixtieFive +" "+ t_skattunder65 +" "+ t_skatt65);
+  //console.log(t_row);
+
+
+}//end of salAccounting
+
+function getTaxRow(t_salary, t_table_nr){
+
+  var t_row_taxtable = new Array();
+
+  for (var i=0; i < salaryTaxArray.length; i++){
+
+    var t_row = new Array();
+    t_row = salaryTaxArray[i]; //s
+    var t_salto = parseInt(t_row[4]);// inkomst från och med
+
+      if ( t_salary <= t_salto && t_row[2] == t_table_nr){
+        break;
+      }//end if
+
+  }// end forloop
+
+  console.log(t_row);
+  return t_row;
+}// end of getTaxRow()
+
+function createVerifikationArray(t_salary, t_arbetgivaravift, t_salaryskatt, t_nettolon){
+  var t_ver_array = new Array();
+
+  var t_ver_row = ["Konto", "Debet", "Kredit"];
+  t_ver_array.push(t_ver_row);
+  t_ver_row =["1930", "0", t_nettolon];
+  t_ver_array.push(t_ver_row);
+  t_ver_row =["2710", "0", t_salaryskatt];
+  t_ver_array.push(t_ver_row);
+  t_ver_row =["2730", "0", t_arbetgivaravift];
+  t_ver_array.push(t_ver_row);
+  t_ver_row =["7010", t_arbetgivaravift, "0"];
+  t_ver_array.push(t_ver_row);
+  t_ver_row =["7016", t_salary, "0"];
+  t_ver_array.push(t_ver_row);
+
+
+  return t_ver_array;
+
+}//end of createVerifikationArray
+
+function printVerifikation(t_verifikation_array){
+
+
+
+  var t_div_ver = document.getElementById("bokforutmatning");
+  t_div_ver.innerHTML = "";
+
+
+  var t_heading = t_verifikation_array[0];
+
+
+  var table = document.createElement('TABLE')
+  var tableJhaed = document.createElement('THEAD')
+  var tableBody = document.createElement('TBODY')
+
+  //TABLE COLUMNS
+  table.border = '1';
+  table.align = 'center';
+
+  table.appendChild(tableJhaed);
+  var tr = document.createElement('TR');
+  tableJhaed.appendChild(tr);
+  for (i = 0; i < t_heading.length; i++) {
+      var th = document.createElement('TH')
+
+      if (i==1)
+        th.width = '220';
+
+
+      else
+        th.width = '75';
+
+      th.appendChild(document.createTextNode(t_heading[i]));
+      tr.appendChild(th);
+
+  }
+
+  table.appendChild(tableBody);
+  //TABLE ROWS
+
+  for (i = 1; i < t_verifikation_array.length; i++) {
+      var tr = document.createElement('TR');
+      tableBody.appendChild(tr);
+
+      //console.log(i +": ");
+      for (j = 0; j < t_verifikation_array[i].length; j++) {
+          //console.log(t_verifikation_array[i][j]);
+          var td = document.createElement('TD')
+
+          if (j==1)
+            td.align = 'left';
+
+          td.appendChild(document.createTextNode(t_verifikation_array[i][j]));
+          tr.appendChild(td);
+      }
+      //table.appendChild(tr);
+  }
+
+t_div_ver.appendChild(table);
+
+}//end of printVerifikation
+
+function printKalkyl(t_salary, t_arbetgivaravift, t_salaryskatt){
+
+  t_arbetgivaravift = t_arbetgivaravift/100;//procent
+  var t_div_kalkyl = document.getElementById("skattutrakning");
+  var t_arbetgivaravift_kr = t_salary*t_arbetgivaravift;
+  t_arbetgivaravift_kr = t_arbetgivaravift_kr.toFixed(0);
+  var t_totlonkostnad = parseInt(t_arbetgivaravift_kr)+parseInt(t_salary);
+  var t_nettolon = parseInt(t_salary)-parseInt(t_salaryskatt);
+
+
+  t_div_kalkyl.innerHTML="";//tömmer div element
+  var t_text1 = "Lön: " +t_salary+ "kr <br>Arbetsgivaravgift:  " +t_arbetgivaravift_kr+ "kr <br><b>Summa total lönekostnad: " + t_totlonkostnad +"kr</b>";
+  var t_text2 = "<br><br>Preliminär skatt: " +t_salaryskatt+ "kr<br><b>Nettolön: " +t_nettolon+ "kr</b>";
+
+  t_div_kalkyl.innerHTML = t_text1 + t_text2;
+
+  //Skriver ut Verifikation
+  printVerifikation(createVerifikationArray(t_salary, t_arbetgivaravift_kr, t_salaryskatt, t_nettolon));
+
+}//end of printKalkyl
