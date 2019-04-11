@@ -2,6 +2,10 @@ body {
 background-color: #D8F6CE;
 }
 
+h4 {
+	text-decoration: underline;
+}
+
 table, td, th {
 	border-collapse: collapse;
 	border: 1px solid black;
@@ -32,4 +36,27 @@ a {
 div#loninmatning {
 	border-top: 3px solid green;
   
+}
+a:link {
+color: blue;
+text-decoration: none;
+}
+
+a:hover {
+  color: green;
+}
+a:visited{
+	color: blueviolet;
+}
+
+div#lankar {
+	margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+div#jensa {
+	margin: auto;
+  width: 70%;
+  padding: 10px;
 }

@@ -179,15 +179,15 @@ function selectedKommun(){
   //lägger till headings till html table
   var t_heading = new Array();
   t_heading[0] = "År";
-  t_heading[1] = "FörsamlingsKod";
+  t_heading[1] = "Församlings\nKod";
   t_heading[2] = "Kommun";
   t_heading[3] = "Församling";
-  t_heading[4] = "SummaInkKyrkAvgift";
-  t_heading[5] = "SummaExkKyrkAvgift";
-  t_heading[6] = "KommunalSkatt";
-  t_heading[7] = "LandstingsSkatt";
-  t_heading[8] = "BegravningsAvg";
-  t_heading[9] = "KyrkoAvg";
+  t_heading[4] = "SummaInk\nKyrkAvgift";
+  t_heading[5] = "SummaExk\nKyrkAvgift";
+  t_heading[6] = "Kommunal\nSkatt";
+  t_heading[7] = "Landstings\nSkatt";
+  t_heading[8] = "Begravnings\nAvg";
+  t_heading[9] = "Kyrko\nAvg";
 
   t_valdkommun_array.push(t_heading);
 
@@ -356,7 +356,7 @@ function showSallaryButton(t_status){
 
   }
   else {
-    t_tfield.value = "0";
+    t_tfield.value = "";
     divSallaryButton.style.visibility = 'visible';
 
   }
@@ -418,17 +418,17 @@ function getTaxRow(t_salary, t_table_nr){
 function createVerifikationArray(t_salary, t_arbetgivaravift, t_salaryskatt, t_nettolon){
   var t_ver_array = new Array();
 
-  var t_ver_row = ["Konto", "Debet", "Kredit"];
+  var t_ver_row = ["Konto", "Kontonamn - Benämning", "Debet", "Kredit"];
   t_ver_array.push(t_ver_row);
-  t_ver_row =["1930", "0", t_nettolon];
+  t_ver_row =["1930", "Företagskonto", "0", t_nettolon];
   t_ver_array.push(t_ver_row);
-  t_ver_row =["2710", "0", t_salaryskatt];
+  t_ver_row =["2710", "Personalskatt", "0", t_salaryskatt];
   t_ver_array.push(t_ver_row);
-  t_ver_row =["2730", "0", t_arbetgivaravift];
+  t_ver_row =["2730", "Lagstadga social avg", "0", t_arbetgivaravift];
   t_ver_array.push(t_ver_row);
-  t_ver_row =["7010", t_arbetgivaravift, "0"];
+  t_ver_row =["7010", "Lön kollektivanställda", t_salary, "0"];
   t_ver_array.push(t_ver_row);
-  t_ver_row =["7016", t_salary, "0"];
+  t_ver_row =["7510", "Arbetsgivaravgift 31.42%",  t_arbetgivaravift, "0"];
   t_ver_array.push(t_ver_row);
 
 
