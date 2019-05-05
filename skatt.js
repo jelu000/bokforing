@@ -179,15 +179,15 @@ function selectedKommun(){
   //lägger till headings till html table
   var t_heading = new Array();
   t_heading[0] = "År";
-  t_heading[1] = "Församlings\nKod";
-  t_heading[2] = "Kommun";
-  t_heading[3] = "Församling";
-  t_heading[4] = "SummaInk\nKyrkAvgift";
-  t_heading[5] = "SummaExk\nKyrkAvgift";
-  t_heading[6] = "Kommunal\nSkatt";
-  t_heading[7] = "Landstings\nSkatt";
-  t_heading[8] = "Begravnings\nAvg";
-  t_heading[9] = "Kyrko\nAvg";
+  t_heading[1] = "Församlings-\nKod";
+  t_heading[2] = "Kommun\n";
+  t_heading[3] = "Församling\n";
+  t_heading[4] = "Summa inkl.\nkyrkoavgift";
+  t_heading[5] = "Summa exkl. \nkyrkoavgift";
+  t_heading[6] = "Kommunal-\nskatt";
+  t_heading[7] = "Landstings-\nskatt";
+  t_heading[8] = "Begravnings-\navgift";
+  t_heading[9] = "Kyrko-\navgift";
 
   t_valdkommun_array.push(t_heading);
 
@@ -283,12 +283,12 @@ function selectSalaryTaxNr(t_findrow){
 
   //lägger till headings till html table
   var t_heading = new Array();
-  t_heading[0] = "År";//0
-  t_heading[1] = "TabellNr";//2
-  t_heading[2] = "Inkomst fr.o.m.";//3
-  t_heading[3] = "Inkomst t.o.m.";//4
-  t_heading[4] = "Skatt under 65år";//5
-  t_heading[5] = "Skatt fr.o.m 65år";//7
+  t_heading[0] = "År\n";//0
+  t_heading[1] = "Tabell-\nnummer";//2
+  t_heading[2] = "Inkomst\n fr.o.m.";//3
+  t_heading[3] = "Inkomst\n t.o.m.";//4
+  t_heading[4] = "Skatt under\n 65år";//5
+  t_heading[5] = "Skatt fr.o.m\n 65år";//7
 
 
   t_valdsalarynr_array.push(t_heading);
