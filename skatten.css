@@ -42,7 +42,7 @@ a {
 
 div#loninmatning {
 	border-top: 3px solid green;
-  
+
 }
 a:link {
 	color: blue;
@@ -72,4 +72,12 @@ div.innerdiv{
 	margin: auto;
   	width: 90%;
   	padding: 10px;
+}
+
+li {
+	padding: 10px;
+}
+
+ol {
+	padding: 20px;
 }
