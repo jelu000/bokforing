@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Bokföring</title>
+	<link rel="icon" href="/bilskatt/favicon.ico" />
+	<meta name="generator" content="Bluefish 2.2.7">
+	<meta name="author" content="jens">
+	<meta name="date" content="2019-04-17T00:23:56+0200">
+	<meta name="copyright" content="Jens Lundeqvist">
+	<meta name="keywords"
+		content="Skatteverket, bokföra lön, skatt, lön, skattetabell, löneskatt, kommunalskatt, bokföring, verifikation">
+	<meta name="description" content="Här kan du se hur skattetabellerna för 2019 och skatt på lön dras och bokförs.">
+	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+	<meta http-equiv="content-style-type" content="text/css">
+	<meta http-equiv="expires" content="0">
+
+
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link href="skatten.css" rel="stylesheet">
+
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+	<script src="bokforing.js"></script>
+	<script src="skatt.js"></script>
+
+</head>
+
+<body onload="tMain()">
+
+	<div id="tabs">
+		<ul>
+
+			<li><a href="#tabs-1">Skattesatser per kommun</a></li>
+			<li><a href="#tabs-2">Skattetabell månadslön</a></li>
+			<li><a href="#tabs-3">Löneutbetalning</a></li>
+			<li><a href="#tabs-4">Om sidan</a></li>
+			<li><a href="#tabs-5">Länkar</a></li>
+		</ul>
+		<div id="tabs-1">
+			<div class="innerdiv" id="innerdiv">
+				<h4>Kommunal skatt</h4>
+				<p>
+					Här kan du söka i Skatteverkets skattetabell för kommunalskatt i filen skattesatser-2019_2.csv för
+					att till exempel räkna ut preliminär inkomstskatt.
+					Skattesatsen används också för att räkna ut skatt på lön eftersom skattesatsen ligger till grund för
+					vilken tabell som ska användas i löne skattetabellen.
+				</p>
+				<p>
+					Exempel för att ta reda på vilken skatt som ska debiteras på lönen med 32,54% i kommunal
+					skattetabellen (flik 1) avrundas då till tabell 33 i löne skattetabellen (flik 2).
+					I kommunalskatten ingår pengar till landsting och kommunen, men även kyrkoskatt om man valt att vara
+					medlem i kyrkan.
+					Därför blir skatten mindre om man valt att inte vara med i kyrkan.
+				</p>
+
+				<p>Här finns en översiktskarta med de olika skatterna i Sverige:
+					<a href="https://www.ekonomifakta.se/Fakta/Skatter/Skatt-pa-arbete/Kommunalskatter/" target="_blank"
+						name="SkatteKarta" style="color: blue; "
+						title="SkatteKarta">https://www.ekonomifakta.se/Fakta/Skatter/Skatt-pa-arbete/Kommunalskatter/</a>
+				</p>
+
+				<!--<meta charset="iso-8859-1">-->
+				<select name="optionkommuner" id="optionkommuner" onchange="selectedKommun()"></select>
+				<br>
+				<br>
+				<div class="KomSkattutmatning" id="KomSkattutmatning">
+
+				</div>
+
+			</div>
+
+		</div>
+		<div id="tabs-2">
+			<div class="innerdiv" id="innerdiv">
+				<h4>Skatt för lönetagare</h4>
+				<p>
+					På denna sida kan du söka skattetabell baserat på månadslön.
+					Jag har valt att bara ta med kolumnerna för skatt på lön ersättning för löntagare under 65 samt för
+					löntagare från och med 65 år.
+					Skattetabellerna innehåller också kolumner för personer med ersättning för sjukdom samt olika
+					ersättningar för pensioner men är inte presenterat på denna sida.
+				</p>
+
+				<p>
+					Man väljer först vilket tabellnummer man tillhör vilket man får från skattesatser för kommun som
+					finns på (flik 1).
+					Där söker man på sin kommun och avrundar skatteprocenten till ett heltal som blir tabellnummer man
+					använder på den här sidan.
+					Sen ser man i vilket intervall lönen ligger i och på samma rad ser man den skatt som ska betalas på
+					en månadslön.
+					Här kan du läsa mer om hur skatt månadslön fungerar:
+
+					<a href="https://www.skatteverket.se/privat/skatter/arbeteochinkomst/sabeskattasdinlon.4.54a3d27615036ac09f316ce.html"
+						target="_blank"
+						style="color: #0000FF; ">https://www.skatteverket.se/privat/skatter/arbeteochinkomst/sabeskattasdinlon.4.54a3d27615036ac09f316ce.html</a>
+				</p>
+
+				<!--<meta charset="iso-8859-1">-->
+				<select name="optionsalarytax" id="optionsalarytax" onchange="selectSalaryTaxNr(false)"></select>
+				<br><br>
+				<div class="divSallaryButton" name="divSallaryButton" id="divSallaryButton">
+					Mata in inkomst/månadslön:
+					<input type="number" size="5" id="thesalary">
+					<input type="button" name="salarybutt" value="Hitta rad" class="salarybutt" id="salarybutt"
+						onfocus="selectSalaryTaxNr(true)">
+				</div>
+				<br>
+				<div class="salaryTaxutmatning" id="salaryTaxutmatning">
+
+				</div>
+			</div>
+		</div>
+
+		<div id="tabs-3">
+			<div class="innerdiv" id="innerdiv">
+				<h4>Bokföra löneutbetalning</h4>
+				<p>
+					Denna sida visar ett exempel på hur man bokför en lön med arbetsgivaravgift.
+					Arbetsgivaravgiften kan variera beroende på vilket anställningsavtal och vilket fack den anställde
+					är ansluten till.
+					Arbetsgivaravgiften 2019 är i grund 31.42% och läggs på bruttolön. Löneskatten dras från
+					bruttolönen.
+					Denna skatt baseras på flera faktorer såsom vart man bor, ålder, månadslön och om man är ansluten
+					till kyrkan.
+				</p>
+				<p>
+					I korthet går det till så här när man räknar ut lön:
+				</p>
+
+				<ol>
+					<li>
+						Räkna ut arbetsgivaravgifter genom att ta bruttolön * 0.3142 som är arbetsgivaravgiften 2019.
+					</li>
+
+					<li>
+						Dra av den rätta preliminära skatten från bruttolönen som man hittar i skattetabellen för löner.
+						Vilken skattetabell du ska använda får du reda på under första fliken: "Skattesatser per
+						kommun".
+					</li>
+				</ol>
+
+				<p>
+					Arbetsgivaravgiften är bland annat för pension och sjukförsäkring och kan variera beroende på flera
+					saker.
+					Det kan vara att det finns tilläggsförsäkringar i anställningsavtalet.
+					Olika avdrag för arbetsgivaravgifter kan förekomma såsom verksamheter inom stödområde eller att den
+					anställde är yngre än 18 år.
+					Det finns även andra avdrag, information om dessa finns på Skatteverkets webbsida.
+
+				</p>
+
+				<div class="loninmatning" id="loninmatning">
+					<br>
+					Bruttolön: <input tabindex="1" type="number" name="income" size="5" class="income" id="income">
+					&nbsp;
+					Arbetsgivaravgift i %: <input tabindex="2" type="number" name="socialaavg" value="31.42" size="1"
+						maxlength="5" class="socialaavg" id="socialaavg">
+					&nbsp;
+					Skattetabell: <select tabindex="3" name="optionaccounting" id="optionaccounting"
+						onchange="selectSalaryTaxNr(false)"></select>
+					&nbsp;
+					Fyllt 65 år: <input tabindex="4" type="checkbox" class="sixtieFive" id="sixtieFive">
+					&nbsp; &nbsp;&nbsp;&nbsp;
+					<input tabindex="5" type="submit" name="Bokför" value="Bokför" onclick="salAccounting()">
+
+
+				</div>
+
+				<br><br>
+
+				<div class="skattutrakning" id="skattutrakning"></div>
+
+				<div class="bokfor_utmatning" id="bokforutmatning">
+
+				</div>
+			</div>
+		</div>
+
+		<div id="tabs-4">
+			<div id="jensa">
+				<h4>Om sidan <a href="http://salongnobless.se/jens" target="_blank" name="http://salongnobless.se/jens"
+						title="Jens Lundeqvist">&copy;Jens Lundeqvist</a></h4>
+				<p>
+					Syftet med denna sida är att försöka förklara lönebeskattning på ett lättare sätt än Skatteverkets
+					sida och försöka visa hur den kommunala skattetabellen hänger ihop med tabellen för lönebeskattning.
+					Sen vill jag också visa hur man kan bokföra en lön enligt Bokföringsnämndens regler med
+					arbetsgivaravgift och löneskatt.
+				</p>
+
+				<p>
+					Jag som programmerat sidan heter <a href="http://salongnobless.se/jens" target="_blank"
+						name="http://salongnobless.se/jens" title="Jens">Jens</a> och är programmerings och
+					ekonomiintresserad Östersundare.
+					Jag har examen i datateknik från Mittuniversitet och en ekonomi och löne assistents utbildning från
+					<a href="http://www.avans.se" target="_blank" name="http://www.avans.se" title="Avans">Avans</a> i
+					Östersund.
+
+					Utbildningen hos Avans kan jag varmt rekommendera där fick vi både praktiskt och teoretisk lära oss
+					företagsekonomi.
+					Vi använda program så som Fortnox och Visma men också Office-paketet.
+					Praktik ingick också i utbildningen vilken jag tillbringade hos <a
+						href="https://a2revision.se/kontakt/ostersund/" target="_blank" title="a2-revision">a2
+						revision</a> i Östersund.
+
+				</p>
+			</div>
+		</div>
+
+		<div id="tabs-5">
+			<div id="lankar">
+				<h3 style="text-decoration: underline; ">.:Länkar:.</h3>
+				<h4>Mina</h4>
+
+				<a href="http://salongnobless.se/bilskatt/" target="_blank"
+					title="Förmånsbeskattning av bil">Förmånsbeskattning av bil</a>
+				<br>
+				<a href="http://salongnobless.se/bokforing/momsen.html" target="_blank"
+					title="Bokföra dagskassor">Bokföra-dagskassor</a>
+				<br>
+				<a href="http://salongnobless.se/swishreader/" target="_blank"
+					title="Swishtransaktioner hos swedbank">Slå ihop swish-transaktioner konto hos Swedbank</a>
+				<br>
+				<a href="https://github.com/jelu000/" target="_blank" title="Github">Mitt GitHub konto</a>
+				<br>
+				<a href="http://salongnobless.se/subdir/" target="_blank" title="Enkel räknare i React">Enkel räknare i
+					React</a>
+				<br>
+				<a href="http://salongnobless.se/jens/" target="_blank" title="Enkel räknare i React">Jens
+					Lundeqvist</a>
+				<br>
+
+				<h4>Skolor</h4>
+				<a href="http://www.avans.se" target="_blank" title="Avans">Avans</a>
+				<h4>Ekonomi</h4>
+				<a href="https://www.bokforingstips.se" target="_blank" title="BokföringsTips">BokföringsTips.se</a>
+				<br>
+				<a href="https://www.ekonomifakta.se" target="_blank" name="SkatteKarta"
+					title="EkonomiFakta.se">EkonomiFakta.se</a>
+			</div>
+		</div>
+
+
+</body>
+
+</html>

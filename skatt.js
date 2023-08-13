@@ -9,10 +9,13 @@ var global_kommun ="";
 
 //var G_valdSallaryTaxRow = new Array();
 
-
+ 
 //Lönesaktt - Sallary Taxes
 var salaryTaxArray = new Array();
 var salaryTaxArrayTabellNr = [];
+
+
+var tselectedkommun = document.getElementById("optionkommuner");//.selectedValue;
 
 
 function tMain(){
@@ -174,7 +177,7 @@ function selectedKommun(){
   document.getElementById(div_html_id).innerHTML = "";
 
   var t_valdkommun_array = new Array();//rader med data för vald kommun
-  var tselectedkommun = document.getElementById("optionkommuner");//.selectedValue;
+  //var tselectedkommun = document.getElementById("optionkommuner");//.selectedValue;
 
   //lägger till headings till html table
   var t_heading = new Array();
@@ -518,3 +521,23 @@ function printKalkyl(t_salary, t_arbetgivaravift, t_salaryskatt){
   printVerifikation(createVerifikationArray(t_salary, t_arbetgivaravift_kr, t_salaryskatt, t_nettolon));
 
 }//end of printKalkyl
+
+/**
+ * clearSkattetabell() - tömmer div med skattetabell
+ * 
+ */
+function clearSkattetabell(){
+  //tarbort skatte tabell
+  document.getElementById("salaryTaxutmatning").innerHTML = "";
+  //tar bort inmatning i input
+  document.getElementById("thesalary").value = "";
+  //hide the div
+  //document.getElementById("divSallaryButton").style.display = "none"
+  //sätter selecten
+  const t_select = document.getElementById('optionsalarytax');
+  t_select.value = 'Välj skattetabell';
+
+
+}
+  
+
