@@ -2,7 +2,7 @@
 <html lang="sv">
 
 <head>
-  <title>Skatt på Löneinkomst</title>
+  <title>Skatt på inkomst</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--<link rel="stylesheet" href="w3.css">-->
@@ -42,8 +42,7 @@
 
 
   <script src="bokforing.js"></script>
-  <!--  <script src="skatt.js"></script>-->
-
+  <script src="skatt.js" defer></script>
 </head>
 
 <body onload='tMain()'>
@@ -74,7 +73,7 @@
 
   <!-- Header -->
   <header class="w3-container w3-red w3-center" style="padding:60px 28px">
-    <h1 class="w3-margin w3-jumbo">Skatt på lön</h1>
+    <h1 class="w3-margin w3-jumbo">Inkomstakatt</h1>
 
   </header>
 
@@ -104,7 +103,7 @@
           Här finns en översiktskarta med de olika skatterna i Sverige:
           <a href="https://www.ekonomifakta.se/Fakta/Skatter/Skatt-pa-arbete/Kommunalskatter/" target="_blank"
             style="color: blue; "
-            title="SkatteKarta">https://www.ekonomifakta.se/Fakta/Skatter/Skatt-pa-arbete/Kommunalskatter/</a>
+            title="SkatteKarta">ekonomifakta.se</a>
         </p>
         <!--<meta charset="iso-8859-1">-->
         <select name="optionkommuner" id="optionkommuner" onchange="selectedKommun()"></select>
@@ -140,7 +139,7 @@
           månadslön. Här kan du läsa mer om hur skatt månadslön fungerar:
           <a href="https://www.skatteverket.se/privat/skatter/arbeteochinkomst/sabeskattasdinlon.4.54a3d27615036ac09f316ce.html"
             target="_blank"
-            style="color: #0000FF; ">https://www.skatteverket.se/privat/skatter/arbeteochinkomst/sabeskattasdinlon.4.54a3d27615036ac09f316ce.html</a>
+            style="color: #0000FF; ">skatteverket.se</a>
 
         </p>
         <!--<meta charset="iso-8859-1">-->
@@ -323,7 +322,7 @@
     <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
   </footer>
 
-  <script src="skatt.js"></script>
+  
   
   
   <script>
